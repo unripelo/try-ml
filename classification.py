@@ -15,3 +15,16 @@ X_train, X_test, y_train, y_test = train_test_split(
 scaler = StandardScaler()
 X_train_scaled = scaler.fit_transform(X_train)
 X_test_scaled = scaler.transform(X_test)
+
+dt = DecisionTreeClassifier(random_state=42)
+lr = LogisticRegression(max_iter=1000, random_state=42)
+
+dt.fit(X_train, y_train)
+lr.fit(X_train_scaled, y_train)
+
+def print_metrics(model, X_test, y_test):
+    y_pred = model.predict(X_test)
+    print(f"Accuracy: {accuracy_score(y_test, y_pred):.4f}")
+    print(f"Precision: {precision_score(y_test, y_pred):.4f}")
+    print(f"Recall: {recall_score(y_test, y_pred):.4f}")
+    print(f"F1 Score: {f1_score(y_test, y_pred):.4f}")
