@@ -28,3 +28,10 @@ def print_metrics(model, X_test, y_test):
     print(f"Precision: {precision_score(y_test, y_pred):.4f}")
     print(f"Recall: {recall_score(y_test, y_pred):.4f}")
     print(f"F1 Score: {f1_score(y_test, y_pred):.4f}")
+
+    dt_pred = dt.predict(X_test)
+    print_metrics(dt, X_test, y_test)
+    lr_pred = lr.predict(X_test_scaled)
+    print_metrics(lr, X_test_scaled, y_test)
+
+    
