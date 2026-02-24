@@ -18,3 +18,23 @@ def _spinner_worker(stop_event: threading.Event, message: str) -> None:
     sys.stdout.write("\r" + " " * (len(message) + 8) + "\r")
     sys.stdout.flush()
 
+def run_with_loading(duration: float, message: str) -> None:
+    """Execute a timed operation with a loading spinner."""
+    stop_event = threading.Event()
+    spinner = threading.Thread(
+        target=_spinner_worker,
+        args=(stop_event, message),
+        daemon=True,
+    )
+    spinner.start()
+    time.sleep(duration)
+    stop_event.set()
+    spinner.join(timeout=0.5)
+
+
+def _agent_header(title: str) -> None:
+    """Print a styled agent task header."""
+    width = 52
+    print(f"\n┌{'─' * (width - 2)}┐")
+    print(f"│  ●  {title:<{width - 8}}│")
+    print(f"└{'─' * (width - 2)}┘")
