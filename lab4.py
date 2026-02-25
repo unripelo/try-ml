@@ -38,3 +38,21 @@ def _agent_header(title: str) -> None:
     print(f"\n┌{'─' * (width - 2)}┐")
     print(f"│  ●  {title:<{width - 8}}│")
     print(f"└{'─' * (width - 2)}┘")
+
+def _agent_line(label: str, value: str) -> None:
+    """Print a formatted agent info line."""
+    print(f"   →  {label}: {value}")
+
+
+def _agent_success(message: str) -> None:
+    """Print a success completion message."""
+    print(f"   ✓  {message}\n")
+
+
+def handle_prompt(prompt: str) -> None:
+    """Process and analyze the user prompt."""
+    _agent_header("PROMPT ANALYSIS")
+    _agent_line("Input", prompt)
+    print()
+    run_with_loading(5, "Analyzing intent and planning workflow...")
+    _agent_success("Prompt understood. Workflow initialized.")
