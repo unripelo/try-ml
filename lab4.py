@@ -56,3 +56,33 @@ def handle_prompt(prompt: str) -> None:
     print()
     run_with_loading(5, "Analyzing intent and planning workflow...")
     _agent_success("Prompt understood. Workflow initialized.")
+
+def handle_add(files: list[str]) -> list[str]:
+    """Stage files for commit."""
+    _agent_header("STAGING FILES")
+    _agent_line("Files", ", ".join(files))
+    print()
+    run_with_loading(3, "Staging files to index...")
+    _agent_success(f"Staged {len(files)} file(s) successfully.")
+    return files
+
+
+def handle_commit(files: list[str], message: str) -> None:
+    """Create a commit with the staged files."""
+    _agent_header("CREATING COMMIT")
+    _agent_line("Files", ", ".join(files))
+    _agent_line("Message", message)
+    print()
+    run_with_loading(1, "Writing commit to repository...")
+    _agent_success("Commit created successfully.")
+
+
+def handle_push(remote: str, branch: str) -> str:
+    """Push commits to remote repository."""
+    _agent_header("PUSHING TO REMOTE")
+    _agent_line("Remote", remote)
+    _agent_line("Branch", branch)
+    print()
+    run_with_loading(2, "Uploading commits to remote...")
+    _agent_success(f"Pushed to {remote}/{branch}.")
+    return branch
