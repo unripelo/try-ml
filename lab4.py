@@ -86,3 +86,39 @@ def handle_push(remote: str, branch: str) -> str:
     run_with_loading(2, "Uploading commits to remote...")
     _agent_success(f"Pushed to {remote}/{branch}.")
     return branch
+
+def handle_create_pr(branch: str, title: str, desc: str) -> str:
+    """Create a pull request."""
+    _agent_header("CREATING PULL REQUEST")
+    _agent_line("Branch", branch)
+    _agent_line("Title", title)
+    desc_preview = (desc[:40] + "...") if len(desc) > 40 else desc
+    _agent_line("Description", desc_preview)
+    print()
+    run_with_loading(3, "Opening pull request...")
+    _agent_success("Pull request created successfully.")
+    return branch
+
+
+def run_agent(
+    prompt: str,
+    files: list[str],
+    message: str,
+    remote: str,
+    branch: str,
+    title: str,
+    desc: str,
+) -> None:
+    """Execute the full git workflow agent pipeline."""
+    print("\n" + "═" * 52)
+    print("  🤖  GIT WORKFLOW AGENT — STARTING")
+    print("═" * 52)
+
+    handle_prompt(prompt)
+    handle_commit(handle_add(files), message)
+    handle_create_pr(handle_push(remote, branch), title, desc)
+
+    print("═" * 52)
+    print("  ✓  AGENT COMPLETE — All tasks finished successfully")
+    print("═" * 52 + "\n")
+
