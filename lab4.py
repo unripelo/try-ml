@@ -122,3 +122,41 @@ def run_agent(
     print("  ✓  AGENT COMPLETE — All tasks finished successfully")
     print("═" * 52 + "\n")
 
+tasks = [
+    {
+        "prompt": "Fix bug in login",
+        "files": ["login.py"],
+        "message": "Fixed login bug",
+        "remote": "origin",
+        "branch": "fix/login",
+        "title": "Fix Login",
+        "desc": "Fixed the login bug"
+    },
+    {
+        "prompt": "Add feature X",
+        "files": ["feature.py"],
+        "message": "Added feature X",
+        "remote": "origin",
+        "branch": "feat/x",
+        "title": "Feature X",
+        "desc": "Added feature X"
+    },
+    {
+        "prompt": "Update documentation",
+        "files": ["README.md"],
+        "message": "Updated README",
+        "remote": "origin",
+        "branch": "docs/update",
+        "title": "Update Docs",
+        "desc": "Updated valid documentation"
+    },
+     {
+        "prompt": "Refactor database",
+        "files": ["db.py"],
+        "message": "Refactored DB",
+        "remote": "origin",
+        "branch": "refactor/db",
+        "title": "Refactor DB",
+        "desc": "Refactored database connection"
+    }
+]
