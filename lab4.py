@@ -160,3 +160,17 @@ tasks = [
         "desc": "Refactored database connection"
     }
 ]
+
+def run_sequential() -> None:
+    """Run agent workflow sequentially."""
+    start_time = time.time()
+    for task in tasks:
+        run_agent(**task)
+    end_time = time.time()
+    print(f"Sequential execution time: {end_time - start_time:.2f} seconds")
+
+
+def run_parallel() -> None:
+    """Run agent workflow in parallel."""
+    start_time = time.time()
+    threads = []
